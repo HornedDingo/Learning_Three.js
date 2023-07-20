@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import gsap from 'gsap'
 
 //Сцена
 const scene = new THREE.Scene()
@@ -35,4 +36,19 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.render(scene, camera)
+
+//Таймер
+const clock = new THREE.Clock()
+
+//Анимация
+const tick = () => 
+{
+    //Таймер
+    const elapsedTime = clock.getElapsedTime()
+
+    //Рендер
+    group.rotation.y = elapsedTime
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
+tick()
