@@ -4,11 +4,19 @@ import * as THREE from 'three'
 //Сцена
 const scene = new THREE.Scene()
 
-//Куб
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({color: 0xA0FF56})
-const cube = new THREE.Mesh(geometry, material)
-scene.add(cube)
+//Объекты
+const group = new THREE.Group()
+scene.add(group)
+
+const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1,1),
+    new THREE.MeshBasicMaterial({color: 0xA0FF56})
+)
+group.add(cube)
+
+//Оси куба
+const axesHelper = new THREE.AxesHelper()
+group.add(axesHelper)
 
 //Размеры
 const sizes = {
